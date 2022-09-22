@@ -1,0 +1,55 @@
+#include <cstdio>
+#include <vector>
+
+using namespace std;
+
+void f() {
+  int x, y;
+  scanf("%d%d", &x, &y);
+
+  vector<char> ans;
+
+  int cur = 1;
+  while (x != 0 || y != 0) {
+    printf("%d %d\n", x, y);
+    bool pX = (x / cur) % 2 != 0;
+    bool pY = (y / cur) % 2 != 0;
+    if (pX == pY) {
+      printf("IMPOSSIBLE\n");
+      return;
+    }
+    if (pX) {
+      // add to x
+      if (((x + cur) % (cur * 2) != 0) != (y % (cur * 2) != 0)) {
+        x += cur;
+        ans.push_back('W');
+      } else {
+        x -= cur;
+        ans.push_back('E');
+      }
+    } else {
+      if (((y + cur) % (cur * 2) != 0) != (x % (cur * 2) != 0)) {
+        y += cur;
+        ans.push_back('S');
+      } else {
+        y -= cur;
+        ans.push_back('N');
+      }
+    }
+    cur *= 2;
+  }
+  for (int i = 0; i < (int)ans.size(); i++) {
+    printf("%c", ans[i]);
+  }
+  printf("\n");
+}
+
+int main() {
+  int q;
+  scanf("%d", &q);
+  for (int i = 1; i <= q; i++) {
+    printf("Case #%d: ", i);
+    f();
+  }
+  return 0;
+}

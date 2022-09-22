@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Input/Output Files
+*.in
+*.txt
+
+*.swp
+*.un
+*.un~
+*.swp~
